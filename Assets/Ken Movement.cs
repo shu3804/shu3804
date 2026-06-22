@@ -13,11 +13,14 @@ public class KenMovement : MonoBehaviour
     private bool isAttacking = false; //攻撃判定のフラグ
 
     public GameObject shield; //シールド追加
+    private bool isCrouching = false; //しゃがみ判定
 
+    public float dodgeDistance = 3f; //回避距離
+    public float dodgeTime = 0.2f; //回避時間
+
+    private bool isDodging = false; //回避判定のフラグ
 
     
-
-
 //------------------------------------------------------------------------------
 
     void Start() //ゲーム開始時に1回だけ実行
@@ -53,16 +56,19 @@ public class KenMovement : MonoBehaviour
             StartCoroutine(SpecialAttack());
         }
 
-        if (Input.GetKey(KeyCode.S)) //「S」キーでしゃがみ
+        if (Input.GetKey(KeyCode.S) && isGrounded) //「S」キーでしゃがみ
         {
+            isCrouching = true;
             transform.localScale = new Vector3(1.5f, 1.5f, 1f);
         }
         else 
         {
+            isCrouching = false;
             transform.localScale = new Vector3(1.5f, 2.5f, 1f);
         }
 
-        if (Input.GetKey(KeyCode.L))
+        //「L」キーでシールド
+        if (Input.GetKey(KeyCode.L) && !isAttacking  && !isCrouching  && isGrounded)
         {
             shield.SetActive(true);
         }
@@ -70,9 +76,30 @@ public class KenMovement : MonoBehaviour
         {
             shield.SetActive(false);
         }
+
+        //「LeftShift」キーで横回避
+        if (Input.GetKeyDown(KeyCode.LeftShift)
+        && isGrounded
+        && !isCrouching
+        && !isAttacking
+        && !isDodging   )
+
+        {
+            if (Input.GetKey(KeyCode.A)) //「A」キーで左回避
+            {
+                StartCoroutine(Dodge(-1));
+            }
+            
+            if (Input.GetKey(KeyCode.D)) //「D」キーで右回避
+            {
+                StartCoroutine(Dodge(1));
+            }
+            
+        }
     }
 
-
+//---------------------------------------------------------------------------------------
+    
     //衝突判定
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -100,5 +127,21 @@ public class KenMovement : MonoBehaviour
         yield return new WaitForSeconds(specialTime); //攻撃硬直
 
         isAttacking = false;
+    }
+
+    //横回避
+    System.Collections.IEnumerator Dodge(float direction)
+    {
+        isDodging = true;
+        
+        transform.position += new Vector3(
+            direction * dodgeDistance,
+            0,
+            0
+        );
+
+        yield return new WaitForSeconds(dodgeTime);
+
+        isDodging = false;
     }
 }
