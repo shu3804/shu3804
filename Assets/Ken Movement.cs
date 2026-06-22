@@ -8,10 +8,14 @@ public class KenMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = true; //キャラがステージ上にいるか判定するフラグ
 
-    public float attackTime = 0.2f; 
+    public float attackTime = 0.2f; //攻撃硬直(攻撃が発生してから動けるまでの時間)
+    public float specialTime  = 0.5f; //攻撃硬直
     private bool isAttacking = false; //攻撃判定のフラグ
 
-    public float specialTime  = 0.5f;
+    public GameObject shield; //シールド追加
+
+
+    
 
 
 //------------------------------------------------------------------------------
@@ -39,14 +43,32 @@ public class KenMovement : MonoBehaviour
             isGrounded = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !isAttacking) //「J」キーで攻撃
+        if (Input.GetKeyDown(KeyCode.J) && !isAttacking) //「J」キーで通常技
         {
             StartCoroutine(NormalAttack());
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.K) && !isAttacking) //「K」キーで必殺技
         {
             StartCoroutine(SpecialAttack());
+        }
+
+        if (Input.GetKey(KeyCode.S)) //「S」キーでしゃがみ
+        {
+            transform.localScale = new Vector3(1.5f, 1.5f, 1f);
+        }
+        else 
+        {
+            transform.localScale = new Vector3(1.5f, 2.5f, 1f);
+        }
+
+        if (Input.GetKey(KeyCode.L))
+        {
+            shield.SetActive(true);
+        }
+        else
+        {
+            shield.SetActive(false);
         }
     }
 
@@ -58,7 +80,7 @@ public class KenMovement : MonoBehaviour
     }
 
 
-    //通常攻撃の関数
+    //通常技
     System.Collections.IEnumerator NormalAttack()
     {
         isAttacking = true; 
@@ -69,7 +91,7 @@ public class KenMovement : MonoBehaviour
         isAttacking = false; 
     }
 
-    //必殺技の関数
+    //必殺技
     System.Collections.IEnumerator SpecialAttack()
     {
         isAttacking = true;
