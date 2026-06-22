@@ -9,8 +9,11 @@ public class KenMovement : MonoBehaviour
     private bool isGrounded = true; //キャラがステージ上にいるか判定するフラグ
 
     public float attackTime = 0.2f; //攻撃硬直(攻撃が発生してから動けるまでの時間)
-    public float specialTime  = 0.5f; //攻撃硬直
+    public float specialTime  = 0.5f; //攻撃の持続時間
     private bool isAttacking = false; //攻撃判定のフラグ
+    public GameObject normalHitbox; //通常技の攻撃判定
+    public GameObject specialHitbox; //必殺技の攻撃判定
+    public float hitboxTime = 0.2f; 
 
     public GameObject shield; //シールド追加
     private bool isCrouching = false; //しゃがみ判定
@@ -26,6 +29,16 @@ public class KenMovement : MonoBehaviour
     void Start() //ゲーム開始時に1回だけ実行
     {
         rb = GetComponent<Rigidbody2D>(); //このキャラについているRigidbody2Dを探す
+
+        if (normalHitbox != null)
+        {
+            normalHitbox.SetActive(false);
+        }
+
+        if (specialHitbox !=null)
+        {
+            specialHitbox.SetActive(false);
+        }
     }
 
     void Update() //毎フレーム実行
@@ -113,8 +126,10 @@ public class KenMovement : MonoBehaviour
         isAttacking = true; 
         Debug.Log("通常技"); //メッセージを表示
 
-        yield return new WaitForSeconds(attackTime); //攻撃硬直
-
+        normalHitbox.SetActive(true);
+        yield return new WaitForSeconds(hitboxTime); //攻撃硬直
+        normalHitbox.SetActive(false);
+        yield return new WaitForSeconds(attackTime);
         isAttacking = false; 
     }
 
@@ -124,8 +139,11 @@ public class KenMovement : MonoBehaviour
         isAttacking = true;
         Debug.Log("必殺技"); //メッセージ表示
 
-        yield return new WaitForSeconds(specialTime); //攻撃硬直
+        specialHitbox.SetActive(false);
+        yield return new WaitForSeconds(hitboxTime); //攻撃硬直
+        specialHitbox.SetActive(false);
 
+        yield return new WaitForSeconds(specialTime);
         isAttacking = false;
     }
 

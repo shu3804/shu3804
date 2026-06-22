@@ -11,7 +11,6 @@ public class HitDetector : MonoBehaviour
         if(other.gameObject.CompareTag("Player2"))
         {
             Debug.Log("Hit!!");
-
         }
     }
 

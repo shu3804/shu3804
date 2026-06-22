@@ -67,6 +67,7 @@ public class SwordMovement : MonoBehaviour
 
         swordHitbox.SetActive(false); //時間が来たら攻撃判定を消す
         isAttacking = false; //攻撃終わり
+        
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
