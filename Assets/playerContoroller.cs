@@ -1,6 +1,7 @@
 using UnityEngine;
+using System.Collections;
 
-public class KenMovement : MonoBehaviour
+public class playerContoroller : MonoBehaviour
 {
     public float speed = 5f; //横移動速度
     public float jumpPower = 7f; //ジャンプ力
@@ -8,14 +9,10 @@ public class KenMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = true; //キャラがステージ上にいるか判定するフラグ
 
-    public float attackTime = 0.2f; //攻撃硬直(攻撃が発生してから動けるまでの時間)
-    public float specialTime  = 0.5f; //攻撃の持続時間
-    private bool isAttacking = false; //攻撃判定のフラグ
-    public GameObject normalHitbox; //通常技の攻撃判定
-    public GameObject specialHitbox; //必殺技の攻撃判定
-    public float hitboxTime = 0.2f; 
+    public GameObject attackHitbox; //攻撃判定の四角を入れる
+    public float attackDuration = 0.3f; //攻撃判定の出ている時間
+    private bool isAttacking = false; //攻撃中かどうか
 
-    public GameObject shield; //シールド追加
     private bool isCrouching = false; //しゃがみ判定
 
     public float dodgeDistance = 3f; //回避距離
@@ -30,28 +27,24 @@ public class KenMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); //このキャラについているRigidbody2Dを探す
 
-        if (normalHitbox != null)
+        if (attackHitbox != null)
         {
-            normalHitbox.SetActive(false);
+            attackHitbox.SetActive(false);
         }
 
-        if (specialHitbox !=null)
-        {
-            specialHitbox.SetActive(false);
-        }
     }
 
     void Update() //毎フレーム実行
     {
-        if (Input.GetKey(KeyCode.A)) //「A」キーで左に移動
+        if (isAttacking)
         {
-            transform.Translate(Vector3.left * speed * Time.deltaTime);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
         }
+        //キーボードの左右入力を取得
+        float moveInput = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.D)) //「D」キーで右に移動
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
+        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) //「SPACE」キーでジャンプ
         {
@@ -59,15 +52,7 @@ public class KenMovement : MonoBehaviour
             isGrounded = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !isAttacking) //「J」キーで通常技
-        {
-            StartCoroutine(NormalAttack());
-        }
-
-        if (Input.GetKeyDown(KeyCode.K) && !isAttacking) //「K」キーで必殺技
-        {
-            StartCoroutine(SpecialAttack());
-        }
+     
 
         if (Input.GetKey(KeyCode.S) && isGrounded) //「S」キーでしゃがみ
         {
@@ -80,15 +65,11 @@ public class KenMovement : MonoBehaviour
             transform.localScale = new Vector3(1.5f, 2.5f, 1f);
         }
 
-        //「L」キーでシールド
-        if (Input.GetKey(KeyCode.L) && !isAttacking  && !isCrouching  && isGrounded)
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            shield.SetActive(true);
+            StartCoroutine(AttackRoutine());
         }
-        else
-        {
-            shield.SetActive(false);
-        }
+
 
         //「LeftShift」キーで横回避
         if (Input.GetKeyDown(KeyCode.LeftShift)
@@ -120,31 +101,16 @@ public class KenMovement : MonoBehaviour
     }
 
 
-    //通常技
-    System.Collections.IEnumerator NormalAttack()
+    IEnumerator AttackRoutine()
     {
-        isAttacking = true; 
-        Debug.Log("通常技"); //メッセージを表示
+        isAttacking = true;// 攻撃中
+        attackHitbox.SetActive(true);// 攻撃判定を出現
 
-        normalHitbox.SetActive(true);
-        yield return new WaitForSeconds(hitboxTime); //攻撃硬直
-        normalHitbox.SetActive(false);
-        yield return new WaitForSeconds(attackTime);
-        isAttacking = false; 
-    }
+        //時間を止める
+        yield return new WaitForSeconds(attackDuration);
 
-    //必殺技
-    System.Collections.IEnumerator SpecialAttack()
-    {
-        isAttacking = true;
-        Debug.Log("必殺技"); //メッセージ表示
-
-        specialHitbox.SetActive(false);
-        yield return new WaitForSeconds(hitboxTime); //攻撃硬直
-        specialHitbox.SetActive(false);
-
-        yield return new WaitForSeconds(specialTime);
-        isAttacking = false;
+        attackHitbox.SetActive(false); //時間が来たら攻撃判定を消す
+        isAttacking = false; //攻撃終わり
     }
 
     //横回避

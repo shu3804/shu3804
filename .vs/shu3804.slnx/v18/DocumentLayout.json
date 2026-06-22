@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\kazki\\shu3804\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\kazki\\shu3804\\assets\\hitdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\hitdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\kazki\\shu3804\\assets\\sword\\sword movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\sword\\sword movement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\kazki\\shu3804\\assets\\playercontoroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\playercontoroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\kazki\\shu3804\\assets\\sword\\hitdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\sword\\hitdetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kazki\\shu3804\\Assets\\HitDetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\HitDetector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "HitDetector.cs",
               "DocumentMoniker": "C:\\Users\\kazki\\shu3804\\Assets\\HitDetector.cs",
               "RelativeDocumentMoniker": "Assets\\HitDetector.cs",
               "ToolTip": "C:\\Users\\kazki\\shu3804\\Assets\\HitDetector.cs",
               "RelativeToolTip": "Assets\\HitDetector.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-21T14:36:04.303Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "playerContoroller.cs",
+              "DocumentMoniker": "C:\\Users\\kazki\\shu3804\\Assets\\playerContoroller.cs",
+              "RelativeDocumentMoniker": "Assets\\playerContoroller.cs",
+              "ToolTip": "C:\\Users\\kazki\\shu3804\\Assets\\playerContoroller.cs",
+              "RelativeToolTip": "Assets\\playerContoroller.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAUwH0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T08:39:48.893Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "HitDetector.cs",
+              "DocumentMoniker": "C:\\Users\\kazki\\shu3804\\Assets\\Sword\\HitDetector.cs",
+              "RelativeDocumentMoniker": "Assets\\Sword\\HitDetector.cs",
+              "ToolTip": "C:\\Users\\kazki\\shu3804\\Assets\\Sword\\HitDetector.cs",
+              "RelativeToolTip": "Assets\\Sword\\HitDetector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T07:56:49.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Sword Movement.cs",
               "DocumentMoniker": "C:\\Users\\kazki\\shu3804\\Assets\\Sword\\Sword Movement.cs",
               "RelativeDocumentMoniker": "Assets\\Sword\\Sword Movement.cs",
               "ToolTip": "C:\\Users\\kazki\\shu3804\\Assets\\Sword\\Sword Movement.cs",
               "RelativeToolTip": "Assets\\Sword\\Sword Movement.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAQwEQAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAowCoAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-06-21T14:13:49.301Z",
               "EditorCaption": ""
